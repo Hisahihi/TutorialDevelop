@@ -19,7 +19,7 @@ public class UserController {
 	@GetMapping("/list")
 	public String getList(Model model) {
 		//全件検索結果をmodelに登録
-		model.addAttribute("userList",service.getUserList());
+		model.addAttribute("userlist",service.getUserList());
 		//User/List.htmlに画面遷移
 		return "user/list";
 	}
