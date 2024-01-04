@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<h1>User情報管理システム</h1>]
+	<h1>User情報管理システム</h1>
 	<h2>User登録</h2>
 	<form method="post" th:action="@{/user/register}" th:object="${user}">
 		<label for="name">名前</label>
@@ -17,8 +17,7 @@
 		<label for="gender">性別</label>
 		<select th:field="*{gender}">
 			<option value="" th:text="選択してください">
-			<option th:each="item:${T(com.techacademy.entity.User.Gender).valuse()}" th:value="${item}"
-				th:text="${item}">
+			<option th:each="item:${T(com.techacademy.entity.User.Gender).values()}" th:value="${item}"th:text="${item}">
 		</select>
 		<br>
 		<label for="age">年齢</label>
