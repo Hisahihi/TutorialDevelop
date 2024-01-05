@@ -1,10 +1,10 @@
-/**削除ボタンを押した時の処理*/
-function clickBtnDelete(){
-	var idck;
+/** 削除ボタンを押した時の処理 */
+function clickBtnDelete() {
+    var idck;
 
-	//チェックした要素を取得する
-	if(typeof document.frm.idck.lenght === 'undefined'){
-		idck =[{ 'checked': document.frm.idck.checked}];
+    // チェックした要素を取得する
+    if (typeof document.frm.idck.length === 'undefined') {
+        idck = [{ 'checked': document.frm.idck.checked }];
     } else {
         idck = document.frm.idck;
     }
