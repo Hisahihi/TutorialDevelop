@@ -25,6 +25,7 @@
 			<th>性別</th>
 			<th>年齢</th>
 			<th>メールアドレス</th>
+			<th></th>
 		</tr>
 		<tr th:each="user : ${userlist}">
 			<td class="center"><input type="checkbox" name="idck" th:value="${user.id}"></td>
