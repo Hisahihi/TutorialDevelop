@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,6 +62,29 @@ class UserControllerTest {
 	        User user = (User)result.getModelAndView().getModel().get("user");
 	        assertEquals(user.getId(), 1);
 	        assertEquals(user.getName(), "ちたお");
+	    }
+
+	    @Test//テスト機能追加は定型文
+	    @DisplayName("変更内容２")
+	    @WithMockUser
+	    void testGetUserList() throws Exception {//testGet＋目的のもの（テスト対象）
+	        // HTTPリクエストに対するレスポンスの検証
+	        MvcResult result = mockMvc.perform(get("/user/list")) // URLにアクセス　URLはControllerの＠RequestMapping＋＠GetMappingのURLのこと
+	            .andExpect(status().isOk()) // ステータスを確認
+	            .andExpect(model().attributeExists("userlist")) // Modelの内容を確認　ModelはControllerの＠GetMappingのModelのこと　３２行目
+	            .andExpect(model().hasNoErrors()) // Modelのエラー有無の確認
+	            .andExpect(view().name("user/list")) // viewの確認
+	            .andReturn(); // 内容の取得
+
+	        // userlistの検証
+	        // Modelからuserlistを取り出す
+	        List<User> userlist = (List<User>)result.getModelAndView().getModel().get("userlist");//複数の情報をもらうときはList<user>で<>の中が複数ほしい情報
+	        assertEquals(userlist.get(0).getId(), 1);//複数の場合、始まりは１じゃなく０
+	        assertEquals(userlist.get(0).getName(), "ちたお");
+	        assertEquals(userlist.get(1).getId(), 2);
+	        assertEquals(userlist.get(1).getName(), "たねぞう");
+	        assertEquals(userlist.get(2).getId(), 3);
+	        assertEquals(userlist.get(2).getName(), "花子");
 	    }
 	}
 
